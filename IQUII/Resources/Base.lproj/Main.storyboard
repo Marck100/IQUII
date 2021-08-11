@@ -1,8 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yj8-oq-bpr">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--Photo Library View Controller-->
+        <scene sceneID="9F4-GW-H1M">
+            <objects>
+                <viewController id="RM3-4P-seD" customClass="PhotoLibraryViewController" customModule="IQUII" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R68-KE-MfM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zOb-qI-3Nx">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YVZ-23-Acr">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="zOb-qI-3Nx" firstAttribute="leading" secondItem="cAc-1P-ynf" secondAttribute="leading" id="3yS-Y4-4Sb"/>
+                            <constraint firstItem="cAc-1P-ynf" firstAttribute="trailing" secondItem="zOb-qI-3Nx" secondAttribute="trailing" id="6fM-AG-jtE"/>
+                            <constraint firstItem="zOb-qI-3Nx" firstAttribute="top" secondItem="cAc-1P-ynf" secondAttribute="top" id="GGd-xj-zUh"/>
+                            <constraint firstItem="cAc-1P-ynf" firstAttribute="bottom" secondItem="zOb-qI-3Nx" secondAttribute="bottom" id="VNZ-xn-8LC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cAc-1P-ynf"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="wJG-Eh-TdA"/>
+                    <connections>
+                        <outlet property="collectionView" destination="zOb-qI-3Nx" id="ZBt-Nq-RWg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XdS-iW-yeG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="882.60869565217399" y="75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Oul-Gb-kyd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yj8-oq-bpr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Eqz-8B-epn">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RM3-4P-seD" kind="relationship" relationship="rootViewController" id="nVM-n7-Mb4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cao-hb-KIr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-27.536231884057973" y="75"/>
+        </scene>
+    </scenes>
 </document>
