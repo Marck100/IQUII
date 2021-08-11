@@ -34,6 +34,7 @@ struct Post: Codable {
         
         let container = try childrenContainer.nestedContainer(keyedBy: DataCodingKeys.self, forKey: .data)
         let imagePath = try container.decode(String.self, forKey: .thumbnail)
+        
         guard let imageURL = URL(string: imagePath) else {
             throw DecodingError.invalidPhotoURL
         }

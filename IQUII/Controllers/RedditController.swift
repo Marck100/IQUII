@@ -28,7 +28,7 @@ final class RedditController {
             let dataContainer = try listingContainer.nestedContainer(keyedBy: DataCodingKeys.self, forKey: .data)
             
             let posts = try dataContainer.decode([Post].self, forKey: .children)
-            self.posts = posts
+            self.posts = posts.filter { $0.imageURL.absoluteString.hasPrefix("https://") }
         }
         
         
