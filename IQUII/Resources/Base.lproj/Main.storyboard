@@ -39,11 +39,50 @@
                     <navigationItem key="navigationItem" id="wJG-Eh-TdA"/>
                     <connections>
                         <outlet property="collectionView" destination="zOb-qI-3Nx" id="ZBt-Nq-RWg"/>
+                        <segue destination="Lsj-tM-VVu" kind="show" identifier="segueToDetailedPhotoViewController" id="4n0-fn-LSd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XdS-iW-yeG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="882.60869565217399" y="75"/>
+        </scene>
+        <!--Detailed Photo View Controller-->
+        <scene sceneID="2mo-QM-pgJ">
+            <objects>
+                <viewController id="Lsj-tM-VVu" customClass="DetailedPhotoViewController" customModule="IQUII" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZFG-d9-Zqc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QRG-A3-VQ8">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bmu-g1-mxv">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="QRG-A3-VQ8" firstAttribute="leading" secondItem="wcL-an-ufC" secondAttribute="leading" id="4uc-Pb-Aug"/>
+                            <constraint firstItem="QRG-A3-VQ8" firstAttribute="top" secondItem="wcL-an-ufC" secondAttribute="top" id="G3b-L7-0t5"/>
+                            <constraint firstAttribute="bottom" secondItem="QRG-A3-VQ8" secondAttribute="bottom" id="QCa-X3-cZb"/>
+                            <constraint firstItem="wcL-an-ufC" firstAttribute="trailing" secondItem="QRG-A3-VQ8" secondAttribute="trailing" id="azP-zl-trY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wcL-an-ufC"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Oxm-7B-dun"/>
+                    <connections>
+                        <outlet property="collectionView" destination="QRG-A3-VQ8" id="3JN-P0-zXX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mzB-bn-aO5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1694" y="80"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Oul-Gb-kyd">

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit.UIImage
 
 
 struct Post: Codable {
@@ -21,6 +22,8 @@ struct Post: Codable {
     
     var subreddit: String
     var author: String
+    
+    var image: UIImage?
     
     enum ChildrenCodingKeys: CodingKey {
         case data

@@ -12,6 +12,9 @@
 		A97DF92426C3127B00657269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A97DF92226C3127B00657269 /* Main.storyboard */; };
 		A97DF92626C3127C00657269 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A97DF92526C3127C00657269 /* Assets.xcassets */; };
 		A97DF92926C3127C00657269 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A97DF92726C3127C00657269 /* LaunchScreen.storyboard */; };
+		A97EEC7926CBAC4C007A7981 /* DetailedPhotoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97EEC7726CBAC4C007A7981 /* DetailedPhotoItem.swift */; };
+		A97EEC7A26CBAC4C007A7981 /* DetailedPhotoItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = A97EEC7826CBAC4C007A7981 /* DetailedPhotoItem.xib */; };
+		A97EEC7C26CBAE95007A7981 /* DetailedPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97EEC7B26CBAE95007A7981 /* DetailedPhotoViewController.swift */; };
 		A9DBC2B226C436C600A8D8FB /* PhotoLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DBC2B126C436C600A8D8FB /* PhotoLibraryViewController.swift */; };
 		A9DBC2B626C4373C00A8D8FB /* PhotoLibraryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DBC2B426C4373C00A8D8FB /* PhotoLibraryItem.swift */; };
 		A9DBC2B726C4373C00A8D8FB /* PhotoLibraryItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9DBC2B526C4373C00A8D8FB /* PhotoLibraryItem.xib */; };
@@ -27,6 +30,9 @@
 		A97DF92526C3127C00657269 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A97DF92826C3127C00657269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A97DF92A26C3127C00657269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A97EEC7726CBAC4C007A7981 /* DetailedPhotoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPhotoItem.swift; sourceTree = "<group>"; };
+		A97EEC7826CBAC4C007A7981 /* DetailedPhotoItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailedPhotoItem.xib; sourceTree = "<group>"; };
+		A97EEC7B26CBAE95007A7981 /* DetailedPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPhotoViewController.swift; sourceTree = "<group>"; };
 		A9DBC2B126C436C600A8D8FB /* PhotoLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryViewController.swift; sourceTree = "<group>"; };
 		A9DBC2B426C4373C00A8D8FB /* PhotoLibraryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryItem.swift; sourceTree = "<group>"; };
 		A9DBC2B526C4373C00A8D8FB /* PhotoLibraryItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoLibraryItem.xib; sourceTree = "<group>"; };
@@ -74,6 +80,15 @@
 			path = IQUII;
 			sourceTree = "<group>";
 		};
+		A97EEC7626CBAC31007A7981 /* DetailedPhotoItem */ = {
+			isa = PBXGroup;
+			children = (
+				A97EEC7726CBAC4C007A7981 /* DetailedPhotoItem.swift */,
+				A97EEC7826CBAC4C007A7981 /* DetailedPhotoItem.xib */,
+			);
+			path = DetailedPhotoItem;
+			sourceTree = "<group>";
+		};
 		A9DBC2AB26C433A100A8D8FB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +101,7 @@
 			children = (
 				A9DBC2B126C436C600A8D8FB /* PhotoLibraryViewController.swift */,
 				A9DBC2B826C4397000A8D8FB /* RedditController.swift */,
+				A97EEC7B26CBAE95007A7981 /* DetailedPhotoViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -101,6 +117,7 @@
 		A9DBC2AE26C433B700A8D8FB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A97EEC7626CBAC31007A7981 /* DetailedPhotoItem */,
 				A9DBC2B326C4371A00A8D8FB /* PhotoLibraryItem */,
 			);
 			path = Views;
@@ -196,6 +213,7 @@
 				A97DF92926C3127C00657269 /* LaunchScreen.storyboard in Resources */,
 				A97DF92626C3127C00657269 /* Assets.xcassets in Resources */,
 				A97DF92426C3127B00657269 /* Main.storyboard in Resources */,
+				A97EEC7A26CBAC4C007A7981 /* DetailedPhotoItem.xib in Resources */,
 				A9DBC2B726C4373C00A8D8FB /* PhotoLibraryItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,7 +228,9 @@
 				A97DF91D26C3127B00657269 /* AppDelegate.swift in Sources */,
 				A97DF91F26C3127B00657269 /* SceneDelegate.swift in Sources */,
 				A9DBC2B226C436C600A8D8FB /* PhotoLibraryViewController.swift in Sources */,
+				A97EEC7C26CBAE95007A7981 /* DetailedPhotoViewController.swift in Sources */,
 				A9DBC2BB26C439C700A8D8FB /* Post.swift in Sources */,
+				A97EEC7926CBAC4C007A7981 /* DetailedPhotoItem.swift in Sources */,
 				A9DBC2B626C4373C00A8D8FB /* PhotoLibraryItem.swift in Sources */,
 				A9DBC2B926C4397000A8D8FB /* RedditController.swift in Sources */,
 			);
