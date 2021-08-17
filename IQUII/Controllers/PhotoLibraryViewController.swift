@@ -46,6 +46,21 @@ class PhotoLibraryViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "segueToDetailedPhotoViewController":
+            let vc = segue.destination as! DetailedPhotoViewController
+            
+            if vc.posts != self.posts {
+                vc.posts = self.posts
+            }
+            
+            vc.currentIndex = sender as! Int
+        default:
+            return
+        }
+    }
+    
 
     //MARK: Method
     
@@ -101,12 +116,19 @@ extension PhotoLibraryViewController: UICollectionViewDelegateFlowLayout {
 //MARK:- UICollectionViewDelegate
 extension PhotoLibraryViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        self.performSegue(withIdentifier: "segueToDetailedPhotoViewController", sender: indexPath.item)
+    }
+    
 }
 
 //MARK:- UISearchBarDelegate
 extension PhotoLibraryViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        
         guard let keyword = searchBar.text else { return }
         
         redditController.fetchPosts(keyword) { (posts) in

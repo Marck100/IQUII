@@ -11,11 +11,24 @@ import UIKit
 class DetailedPhotoItem: UICollectionViewCell {
 
     //MARK: IBOutlet
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollView: UIScrollView! {
+        didSet {
+            scrollView.minimumZoomScale = 1.0
+            scrollView.maximumZoomScale = 6.0
+            scrollView.alwaysBounceVertical = false
+            scrollView.alwaysBounceHorizontal = false
+            
+            scrollView.delegate = self
+        }
+    }
     @IBOutlet weak var imageView: UIImageView!
     
     //MARK: Property
-    var post: Post!
+    var post: Post! {
+        didSet {
+            updateUI()
+        }
+    }
     var image: UIImage! {
         didSet {
             DispatchQueue.main.async {
@@ -56,4 +69,14 @@ class DetailedPhotoItem: UICollectionViewCell {
     
     //MARK: IBAction
 
+}
+
+
+//MARK:- UIScrollViewDelegate
+extension DetailedPhotoItem: UIScrollViewDelegate {
+
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
+    
 }

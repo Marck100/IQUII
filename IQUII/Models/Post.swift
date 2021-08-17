@@ -10,7 +10,7 @@ import Foundation
 import UIKit.UIImage
 
 
-struct Post: Codable {
+struct Post: Codable, Equatable {
     
     enum DecodingError: Error {
         case invalidPhotoURL

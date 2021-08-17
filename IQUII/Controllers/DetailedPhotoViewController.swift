@@ -26,7 +26,7 @@ class DetailedPhotoViewController: UIViewController {
     //MARK: Property
     var posts: [Post] = [] {
         didSet {
-            collectionView.reloadData()
+            //self.collectionView.reloadData()
         }
     }
     
@@ -37,6 +37,16 @@ class DetailedPhotoViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.collectionView.reloadData()
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(item: self.currentIndex, section: 0)
+            self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+        }
+        
     }
     
     //MARK: Method
@@ -79,8 +89,24 @@ extension DetailedPhotoViewController: UICollectionViewDelegateFlowLayout {
         return 0
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return .zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return .zero
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.frame.size
+        
+        let width: CGFloat = {
+            view.frame.width
+        }()
+        let height: CGFloat = {
+            view.frame.height - (view.safeAreaInsets.top + view.safeAreaInsets.bottom)
+        }()
+        
+        return CGSize(width: width, height: height)
     }
     
 }
