@@ -34,7 +34,6 @@
                     <navigationItem key="navigationItem" id="wJG-Eh-TdA"/>
                     <connections>
                         <outlet property="collectionView" destination="zOb-qI-3Nx" id="ZBt-Nq-RWg"/>
-                        <segue destination="Lsj-tM-VVu" kind="show" identifier="segueToDetailedPhotoViewController" id="4n0-fn-LSd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XdS-iW-yeG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -44,12 +43,12 @@
         <!--Detailed Photo View Controller-->
         <scene sceneID="2mo-QM-pgJ">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="Lsj-tM-VVu" customClass="DetailedPhotoViewController" customModule="IQUII" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailedPhotoViewController" extendedLayoutIncludesOpaqueBars="YES" id="Lsj-tM-VVu" customClass="DetailedPhotoViewController" customModule="IQUII" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZFG-d9-Zqc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QRG-A3-VQ8">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QRG-A3-VQ8">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="bmu-g1-mxv">
@@ -60,12 +59,27 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLc-HC-gUQ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="qkN-5n-nSK">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="mnf-01-Eq9">
+                                            <connections>
+                                                <action selector="cancelAction:" destination="Lsj-tM-VVu" id="eOa-0I-3OH"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="QRG-A3-VQ8" firstAttribute="leading" secondItem="wcL-an-ufC" secondAttribute="leading" id="4uc-Pb-Aug"/>
-                            <constraint firstItem="QRG-A3-VQ8" firstAttribute="top" secondItem="wcL-an-ufC" secondAttribute="top" id="G3b-L7-0t5"/>
+                            <constraint firstItem="cLc-HC-gUQ" firstAttribute="trailing" secondItem="wcL-an-ufC" secondAttribute="trailing" id="ACj-9E-oLU"/>
+                            <constraint firstItem="QRG-A3-VQ8" firstAttribute="top" secondItem="cLc-HC-gUQ" secondAttribute="bottom" id="KU8-ak-C10"/>
+                            <constraint firstItem="cLc-HC-gUQ" firstAttribute="leading" secondItem="wcL-an-ufC" secondAttribute="leading" id="Mpi-dG-57p"/>
                             <constraint firstAttribute="bottom" secondItem="QRG-A3-VQ8" secondAttribute="bottom" id="QCa-X3-cZb"/>
+                            <constraint firstItem="cLc-HC-gUQ" firstAttribute="top" secondItem="wcL-an-ufC" secondAttribute="top" id="Tju-iW-6rz"/>
                             <constraint firstItem="wcL-an-ufC" firstAttribute="trailing" secondItem="QRG-A3-VQ8" secondAttribute="trailing" id="azP-zl-trY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wcL-an-ufC"/>
@@ -73,11 +87,12 @@
                     <navigationItem key="navigationItem" id="Oxm-7B-dun"/>
                     <connections>
                         <outlet property="collectionView" destination="QRG-A3-VQ8" id="3JN-P0-zXX"/>
+                        <outlet property="navBar" destination="cLc-HC-gUQ" id="76f-li-JQK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mzB-bn-aO5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1694" y="80"/>
+            <point key="canvasLocation" x="1692.753623188406" y="79.6875"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Oul-Gb-kyd">

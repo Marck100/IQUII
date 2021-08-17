@@ -36,6 +36,11 @@ class PhotoLibraryViewController: UIViewController {
     
     var posts: [Post] = [] {
         didSet {
+            if posts.isEmpty {
+                self.collectionView.backgroundView = emptyResultBackground()
+            } else {
+                self.collectionView.backgroundView = UIView()
+            }
             collectionView.reloadData()
         }
     }
@@ -48,23 +53,90 @@ class PhotoLibraryViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "segueToDetailedPhotoViewController":
-            let vc = segue.destination as! DetailedPhotoViewController
-            
-            if vc.posts != self.posts {
-                vc.posts = self.posts
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.collectionView.backgroundView = typeForSearchBackground()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.collectionView.collectionViewLayout.invalidateLayout()
+        
+        if posts.count == 0 {
+            if searchBar.text == "" {
+                self.collectionView.backgroundView = typeForSearchBackground()
+            } else {
+                self.collectionView.backgroundView = emptyResultBackground()
             }
-            
-            vc.currentIndex = sender as! Int
-        default:
-            return
         }
+        
     }
     
 
     //MARK: Method
+    private func collectionViewBackground(image: UIImage, text: String) -> UIView {
+        
+        func addImageView(view: UIView, image: UIImage) -> UIImageView {
+            let idiom = UIDevice.current.userInterfaceIdiom
+            
+            let imageView = UIImageView()
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            imageView.image = image
+            imageView.contentMode = .scaleAspectFit
+            
+            view.addSubview(imageView)
+            
+            let xConstraint = NSLayoutConstraint(item: imageView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
+            let yConstraint = NSLayoutConstraint(item: imageView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: -100)
+            
+            let widthConstant: CGFloat = idiom == .pad ? self.view.frame.width/2 : self.view.frame.width/1.5
+            let widthConstraint = NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: widthConstant)
+            let heightConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: self.view.frame.height/2)
+            
+            NSLayoutConstraint.activate([xConstraint, yConstraint, widthConstraint, heightConstraint])
+            
+            return imageView
+        }
+        
+        func addLabel(view: UIView, imageView: UIImageView, text: String) {
+            
+            let idiom = UIDevice.current.userInterfaceIdiom
+            
+            let label = UILabel()
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.text = NSLocalizedString(text, comment: "")
+            label.textAlignment = .center
+            label.textColor = .lightGray
+            label.numberOfLines = 0
+            label.font = idiom == . pad ? UIFont.systemFont(ofSize: 32) : UIFont.systemFont(ofSize: 17)
+            
+            let xConstraint = NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
+            
+            let topConstant: CGFloat = idiom == .pad ? 20 : 8
+            let topConstraint = NSLayoutConstraint(item: label, attribute: .top, relatedBy: .equal, toItem: imageView, attribute: .bottom, multiplier: 1, constant: topConstant)
+            let leadingConstraint = NSLayoutConstraint(item: label, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 20)
+            
+            view.addSubview(label)
+            
+            NSLayoutConstraint.activate([xConstraint, topConstraint, leadingConstraint])
+        }
+
+        let view = UIView()
+        view.frame = collectionView.bounds
+        
+        let imageView = addImageView(view: view, image: image)
+        addLabel(view: view, imageView: imageView, text: text)
+        
+        return view
+    }
+    
+    private func typeForSearchBackground() -> UIView {
+        collectionViewBackground(image: #imageLiteral(resourceName: "search"), text: "Type something to start fetching photos")
+    }
+    
+    private func emptyResultBackground() -> UIView {
+        collectionViewBackground(image: #imageLiteral(resourceName: "no_data"), text: "We cannot find anything. Try with a different keyword.")
+    }
     
     //MARK: IBAction
 
@@ -120,7 +192,19 @@ extension PhotoLibraryViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        self.performSegue(withIdentifier: "segueToDetailedPhotoViewController", sender: indexPath.item)
+        let vc = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "DetailedPhotoViewController") as! DetailedPhotoViewController
+        vc.currentIndex = indexPath.item
+        
+        if vc.posts != self.posts {
+            vc.posts = self.posts
+        }
+        
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        
+        
+        self.present(vc, animated: true, completion: nil)
     }
     
 }
@@ -134,11 +218,17 @@ extension PhotoLibraryViewController: UISearchBarDelegate {
         guard let keyword = searchBar.text else { return }
         
         redditController.fetchPosts(keyword) { (posts) in
-            guard let posts = posts else { return }
             
             DispatchQueue.main.async {
-                self.posts = posts
+                self.posts = posts ?? []
             }
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            self.posts = []
+            self.collectionView.collectionViewLayout.invalidateLayout()
         }
     }
     

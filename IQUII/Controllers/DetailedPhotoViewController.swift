@@ -22,13 +22,10 @@ class DetailedPhotoViewController: UIViewController {
             collectionView.register(UINib(nibName: "DetailedPhotoItem", bundle: nil), forCellWithReuseIdentifier: "photoCell")
         }
     }
+    @IBOutlet weak var navBar: UINavigationBar!
     
     //MARK: Property
-    var posts: [Post] = [] {
-        didSet {
-            //self.collectionView.reloadData()
-        }
-    }
+    var posts: [Post] = []
     
     var currentIndex: Int = 0
     
@@ -52,7 +49,10 @@ class DetailedPhotoViewController: UIViewController {
     //MARK: Method
     
     //MARK: IBAction
-
+    @IBAction func cancelAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 //MARK:- UICollectionViewDataSource
@@ -75,6 +75,21 @@ extension DetailedPhotoViewController: UICollectionViewDataSource {
 
 //MARK:- UICollectionViewDelegate
 extension DetailedPhotoViewController: UICollectionViewDelegate {
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let x: CGFloat = {
+            scrollView.contentOffset.x + scrollView.frame.width/2
+        }()
+        let y: CGFloat = {
+            scrollView.frame.height/2
+        }()
+        let center = CGPoint(x: x, y: y)
+        
+        guard let indexPath = collectionView.indexPathForItem(at: center) else { return }
+        let post = self.posts[indexPath.item]
+        
+        self.navBar.topItem?.title = post.author
+    }
     
 }
 
@@ -103,7 +118,7 @@ extension DetailedPhotoViewController: UICollectionViewDelegateFlowLayout {
             view.frame.width
         }()
         let height: CGFloat = {
-            view.frame.height - (view.safeAreaInsets.top + view.safeAreaInsets.bottom)
+            view.frame.height - (view.safeAreaInsets.top + view.safeAreaInsets.bottom + navBar.frame.height)
         }()
         
         return CGSize(width: width, height: height)

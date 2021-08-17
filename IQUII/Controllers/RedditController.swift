@@ -8,6 +8,7 @@
 
 import Foundation
 
+typealias SearchResultCache = [String]
 
 final class RedditController {
     
@@ -33,6 +34,11 @@ final class RedditController {
         
         
     }
+    
+    lazy var connectionAssistant: ConnectionAssistant = {
+        let assistant = ConnectionAssistant.current
+        return assistant
+    }()
     
     private let basePath = "https://www.reddit.com/r/{KEYWORD}/top.json"
     

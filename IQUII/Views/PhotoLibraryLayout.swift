@@ -10,7 +10,13 @@ import UIKit
 
 class PhotoLibraryLayout: UICollectionViewLayout {
 
-    private let numberOfColumns: Int = 2
+    private let numberOfColumns: Int = {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return 3
+        } else {
+            return 2
+        }
+    }()
     private let cellPadding: CGFloat = 12
     
     private var cache: [UICollectionViewLayoutAttributes] = []
@@ -85,6 +91,14 @@ class PhotoLibraryLayout: UICollectionViewLayout {
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return cache[indexPath.item]
+    }
+    
+    override func invalidateLayout() {
+        super.invalidateLayout()
+        
+        self.contentHeight = 0
+        self.cache = []
+        
     }
     
 }
