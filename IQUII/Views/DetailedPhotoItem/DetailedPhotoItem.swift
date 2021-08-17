@@ -24,6 +24,10 @@ class DetailedPhotoItem: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     
     //MARK: Property
+    lazy var imageLoader: ImageLoader = {
+        let loader = ImageLoader.shared
+        return loader
+    }()
     var post: Post! {
         didSet {
             updateUI()
@@ -49,20 +53,7 @@ class DetailedPhotoItem: UICollectionViewCell {
         updateImage()
     }
     private func updateImage() {
-        if let image = post.image {
-            self.image = image
-        } else {
-            loadImage()
-        }
-    }
-    
-    private func loadImage() {
-        DispatchQueue.global().async {
-            guard
-                let data = try? Data(contentsOf: self.post.imageURL),
-                let image = UIImage(data: data)
-            else { return }
-            
+        imageLoader.loadImage(from: post.imageURL) { (image) in
             self.image = image
         }
     }

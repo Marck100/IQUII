@@ -15,15 +15,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zOb-qI-3Nx">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zOb-qI-3Nx">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YVZ-23-Acr">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
+                                <collectionViewLayout key="collectionViewLayout" id="rhf-SQ-RU0" customClass="PhotoLibraryLayout" customModule="IQUII" customModuleProvider="target"/>
                                 <cells/>
                             </collectionView>
                         </subviews>
@@ -32,7 +27,7 @@
                             <constraint firstItem="zOb-qI-3Nx" firstAttribute="leading" secondItem="cAc-1P-ynf" secondAttribute="leading" id="3yS-Y4-4Sb"/>
                             <constraint firstItem="cAc-1P-ynf" firstAttribute="trailing" secondItem="zOb-qI-3Nx" secondAttribute="trailing" id="6fM-AG-jtE"/>
                             <constraint firstItem="zOb-qI-3Nx" firstAttribute="top" secondItem="cAc-1P-ynf" secondAttribute="top" id="GGd-xj-zUh"/>
-                            <constraint firstItem="cAc-1P-ynf" firstAttribute="bottom" secondItem="zOb-qI-3Nx" secondAttribute="bottom" id="VNZ-xn-8LC"/>
+                            <constraint firstAttribute="bottom" secondItem="zOb-qI-3Nx" secondAttribute="bottom" id="VNZ-xn-8LC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cAc-1P-ynf"/>
                     </view>
@@ -49,15 +44,15 @@
         <!--Detailed Photo View Controller-->
         <scene sceneID="2mo-QM-pgJ">
             <objects>
-                <viewController id="Lsj-tM-VVu" customClass="DetailedPhotoViewController" customModule="IQUII" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="Lsj-tM-VVu" customClass="DetailedPhotoViewController" customModule="IQUII" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZFG-d9-Zqc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QRG-A3-VQ8">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QRG-A3-VQ8">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bmu-g1-mxv">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="bmu-g1-mxv">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>

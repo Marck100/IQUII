@@ -23,8 +23,6 @@ struct Post: Codable, Equatable {
     var subreddit: String
     var author: String
     
-    var image: UIImage?
-    
     enum ChildrenCodingKeys: CodingKey {
         case data
     }

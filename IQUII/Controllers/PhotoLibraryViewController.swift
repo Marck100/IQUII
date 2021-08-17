@@ -13,6 +13,8 @@ class PhotoLibraryViewController: UIViewController {
     //MARK: IBOutlet
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
+            collectionView.contentInset = UIEdgeInsets(top: 12, left: 12, bottom: 0, right: 12)
+            
             collectionView.dataSource = self
             collectionView.delegate = self
             
