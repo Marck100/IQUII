@@ -34,7 +34,7 @@ class IQUIITests: XCTestCase {
             expectation.fulfill()
         }
         
-        waitForExpectations(timeout: 30) { (error) in
+        waitForExpectations(timeout: 5) { (error) in
             guard let error = error else { return }
             XCTFail("waitForExpectations with error: \(error.localizedDescription)")
         }
@@ -52,7 +52,7 @@ class IQUIITests: XCTestCase {
                 expectation.fulfill()
             }
             
-            waitForExpectations(timeout: 30) { (error) in
+            waitForExpectations(timeout: 5) { (error) in
                 guard let error = error else { return }
                 XCTFail("waitForExpectations with error: \(error.localizedDescription)")
             }
