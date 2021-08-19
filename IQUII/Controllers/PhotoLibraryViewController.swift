@@ -49,13 +49,9 @@ class PhotoLibraryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //Add searchBar to navigationBar
         self.navigationItem.titleView = searchBar
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+        //Update collectionView's background
         self.collectionView.backgroundView = typeForSearchBackground()
     }
     
@@ -74,11 +70,13 @@ class PhotoLibraryViewController: UIViewController {
     
 
     //MARK: Method
+    //Return view with an image and a message
     private func collectionViewBackground(image: UIImage, text: String) -> UIView {
         
         func addImageView(view: UIView, image: UIImage) -> UIImageView {
             let idiom = UIDevice.current.userInterfaceIdiom
             
+            //Init
             let imageView = UIImageView()
             imageView.translatesAutoresizingMaskIntoConstraints = false
             imageView.image = image
@@ -86,6 +84,8 @@ class PhotoLibraryViewController: UIViewController {
             
             view.addSubview(imageView)
             
+            
+            //Constraint
             let xConstraint = NSLayoutConstraint(item: imageView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
             let yConstraint = NSLayoutConstraint(item: imageView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: -100)
             
@@ -102,6 +102,7 @@ class PhotoLibraryViewController: UIViewController {
             
             let idiom = UIDevice.current.userInterfaceIdiom
             
+            //Init
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
             label.text = NSLocalizedString(text, comment: "")
@@ -110,6 +111,7 @@ class PhotoLibraryViewController: UIViewController {
             label.numberOfLines = 0
             label.font = idiom == . pad ? UIFont.systemFont(ofSize: 32) : UIFont.systemFont(ofSize: 17)
             
+            //Constraint
             let xConstraint = NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
             
             let topConstant: CGFloat = idiom == .pad ? 20 : 8
@@ -130,15 +132,15 @@ class PhotoLibraryViewController: UIViewController {
         return view
     }
     
+    //searchBar is empty
     private func typeForSearchBackground() -> UIView {
         collectionViewBackground(image: #imageLiteral(resourceName: "search"), text: "Type something to start fetching photos")
     }
     
+    //keyword is invalid and there are no posts to display
     private func emptyResultBackground() -> UIView {
         collectionViewBackground(image: #imageLiteral(resourceName: "no_data"), text: "We cannot find anything. Try with a different keyword.")
     }
-    
-    //MARK: IBAction
 
 }
 
@@ -202,7 +204,6 @@ extension PhotoLibraryViewController: UICollectionViewDelegate {
         
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
-        
         
         self.present(vc, animated: true, completion: nil)
     }

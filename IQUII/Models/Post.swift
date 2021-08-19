@@ -18,16 +18,14 @@ struct Post: Codable, Equatable {
     
     var imageURL: URL!
     var title: String
-    var description: String
     
     var subreddit: String
-    var author: String
     
     enum ChildrenCodingKeys: CodingKey {
         case data
     }
     enum DataCodingKeys: CodingKey {
-        case subreddit, selftext, author_fullname, title, thumbnail
+        case subreddit, title, thumbnail
     }
     
     init(from decoder: Decoder) throws {
@@ -42,9 +40,7 @@ struct Post: Codable, Equatable {
         
         self.imageURL = imageURL
         title = try container.decode(String.self, forKey: .title)
-        description = try container.decode(String.self, forKey: .selftext)
         subreddit = try container.decode(String.self, forKey: .subreddit)
-        author = try container.decode(String.self, forKey: .author_fullname)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -52,9 +48,7 @@ struct Post: Codable, Equatable {
         
         try container.encode(imageURL.absoluteString, forKey: .thumbnail)
         try container.encode(title, forKey: .title)
-        try container.encode(description, forKey: .selftext)
         try container.encode(subreddit, forKey: .subreddit)
-        try container.encode(author, forKey: .author_fullname)
     }
     
 }

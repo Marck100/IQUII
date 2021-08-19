@@ -32,13 +32,12 @@ class DetailedPhotoViewController: UIViewController {
     //MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.collectionView.reloadData()
+        
         DispatchQueue.main.async {
             let indexPath = IndexPath(item: self.currentIndex, section: 0)
             self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
@@ -75,21 +74,6 @@ extension DetailedPhotoViewController: UICollectionViewDataSource {
 
 //MARK:- UICollectionViewDelegate
 extension DetailedPhotoViewController: UICollectionViewDelegate {
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let x: CGFloat = {
-            scrollView.contentOffset.x + scrollView.frame.width/2
-        }()
-        let y: CGFloat = {
-            scrollView.frame.height/2
-        }()
-        let center = CGPoint(x: x, y: y)
-        
-        guard let indexPath = collectionView.indexPathForItem(at: center) else { return }
-        let post = self.posts[indexPath.item]
-        
-        self.navBar.topItem?.title = post.author
-    }
     
 }
 

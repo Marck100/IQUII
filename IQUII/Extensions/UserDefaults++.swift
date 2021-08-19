@@ -13,8 +13,11 @@ typealias ImageCache = Data
 extension UserDefaults {
     
     private static let cacheID = "com.userdefaults.cache"
-    private static let searchResultCacheID = "com.userdefaults.cache"
     
+    /// Save new image cache into userDefaults
+    /// - Parameters:
+    ///   - cache: image's data
+    ///   - path: image's path
     func addImageCache(_ cache: ImageCache, path: String) {
         var dictionary = self.dictionary(forKey: UserDefaults.cacheID) as? [String: ImageCache] ?? [:]
         dictionary.updateValue(cache, forKey: path)
@@ -22,22 +25,13 @@ extension UserDefaults {
         self.set(dictionary, forKey: UserDefaults.cacheID)
     }
     
+    
+    /// Retrieve imageCache from a specific url
+    /// - Parameter path: image's url
     func loadImageCache(_ path: String) -> ImageCache? {
         let dictionary = self.dictionary(forKey: UserDefaults.cacheID) as? [String: ImageCache] ?? [:]
         
         return dictionary[path]
-    }
-    
-    func addSearchResultCache(_ cache: SearchResultCache, keyword: String) {
-        var dictionary = self.dictionary(forKey: UserDefaults.searchResultCacheID) as? [String: SearchResultCache] ?? [:]
-        dictionary.updateValue(cache, forKey: keyword)
-        
-        self.set(dictionary, forKey: UserDefaults.searchResultCacheID)
-    }
-    
-    func loadSearchResultCache(_ keyword: String) -> SearchResultCache? {
-        let dictionary = self.dictionary(forKey: UserDefaults.searchResultCacheID) as? [String: SearchResultCache] ?? [:]
-        return dictionary[keyword]
     }
     
 }

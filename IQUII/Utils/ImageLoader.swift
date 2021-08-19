@@ -10,6 +10,7 @@ import Foundation
 import UIKit.UIImage
 
 
+/// ImageLoaded class handles image loading from both caches and urls
 final class ImageLoader {
     
     static let shared = ImageLoader()
@@ -19,11 +20,16 @@ final class ImageLoader {
         return userDefaults
     }()
     
+    /// Loads image from cache is it's available or from url if it isn't
+    /// - Parameters:
+    ///   - url: image's url
     func loadImage(from url: URL, completionHandler: @escaping(UIImage?) -> Void) {
         
+        //if cache is available loads image from userDefaults
         if let cache = userDefaults.loadImageCache(url.absoluteString) {
             completionHandler(imageFromCache(cache))
         } else {
+            //fetch image using internet connection
             imageFromURL(url) { (image) in
                 if let image = image, let data = image.pngData() {
                     self.userDefaults.addImageCache(data, path: url.absoluteString)

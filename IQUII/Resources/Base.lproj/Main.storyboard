@@ -62,7 +62,7 @@
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLc-HC-gUQ">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="qkN-5n-nSK">
+                                    <navigationItem id="qkN-5n-nSK">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="mnf-01-Eq9">
                                             <connections>
                                                 <action selector="cancelAction:" destination="Lsj-tM-VVu" id="eOa-0I-3OH"/>

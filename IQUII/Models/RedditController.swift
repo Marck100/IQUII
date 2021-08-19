@@ -8,10 +8,11 @@
 
 import Foundation
 
-typealias SearchResultCache = [String]
 
+/// RedditController handles Reddit apis requests
 final class RedditController {
     
+    /// Result struct is useful to decode apis' response
     struct Result: Codable {
         
         var posts: [Post]
@@ -35,15 +36,12 @@ final class RedditController {
         
     }
     
-    lazy var connectionAssistant: ConnectionAssistant = {
-        let assistant = ConnectionAssistant.current
-        return assistant
-    }()
-    
     private let basePath = "https://www.reddit.com/r/{KEYWORD}/top.json"
     
     static let `default` = RedditController()
     
+    
+    /// Load posts with custom keyword
     func fetchPosts(_ keyword: String, completionHandler: @escaping(([Post]?) -> Void)) {
         
         let path = basePath.replacingOccurrences(of: "{KEYWORD}", with: keyword)

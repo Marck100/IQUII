@@ -22,6 +22,8 @@ class DetailedPhotoItem: UICollectionViewCell {
         }
     }
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var subredditLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     
     //MARK: Property
     lazy var imageLoader: ImageLoader = {
@@ -51,6 +53,9 @@ class DetailedPhotoItem: UICollectionViewCell {
     //MARK: Method
     private func updateUI() {
         updateImage()
+        
+        self.subredditLabel.text = "r/ \(post.subreddit)"
+        self.titleLabel.text = post.title
     }
     private func updateImage() {
         imageLoader.loadImage(from: post.imageURL) { (image) in

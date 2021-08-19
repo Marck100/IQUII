@@ -17,6 +17,7 @@ class PhotoLibraryLayout: UICollectionViewLayout {
             return 2
         }
     }()
+    
     private let cellPadding: CGFloat = 12
     
     private var cache: [UICollectionViewLayoutAttributes] = []
